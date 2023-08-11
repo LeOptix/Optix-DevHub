@@ -1,0 +1,3 @@
+Optix:
+- Creator
+- Main developer

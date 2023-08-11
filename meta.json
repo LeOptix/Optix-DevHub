@@ -1,0 +1,31 @@
+{
+    "name": "Optix DevHub",
+    "version": "a0.0.9-NA",
+    "author": {
+      "name": "Optix",
+      "website": "https://optix.rf.gd/bio"
+    },
+    "description": "Development just has to be connected.",
+    "keywords": ["devhub", "dev kit", "developer tools", "dev productivity"],
+    "homepage": "https://optix.rf.gd/apps/devhub",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/LeOptix/Optix-DevHub"
+    },
+    "license": "GNU GPL v3",
+    "main": "src/main.lua",
+    "app": {
+      "platforms": ["Windows", "Linux"],
+      "categories": ["Programming", "Productivity"],
+      "supportedDevices": "PC",
+      "permissions": ["Storage"]
+    },
+    "changelog": "CHANGELOG.md",
+    "bugs": {
+      "url": "https://optix.rf.gd/apps/bugs"
+    },
+    "contributors": "CREDITS.md",
+    "documentation": "README.md",
+    "createdAt": "2023-07-08",
+    "updatedAt": "2023-07-08" //a
+  }
