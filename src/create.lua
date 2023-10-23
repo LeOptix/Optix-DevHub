@@ -111,3 +111,5 @@ repeat
         print(translate("ERR_ConfirmYoureCreatingProject"))
     end
 until hasConfirmed
+
+dofile("open.lua")
