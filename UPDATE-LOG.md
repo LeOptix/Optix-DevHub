@@ -1,10 +1,17 @@
 # Optix DevHub UPDATE LOG
 Release system:
-- a-x.x.x - alpha version
-- b-x.x.0 - beta version
-- x.0.0 - stable / main release
-- x.x.x-NA - New Architecture
+- x.x.x - alpha version (_eg. "Version 1.3.4 ALPHA"_)
+- x.x.0 - beta version (_eg. "Version 1.5(.0) BETA"_)
+- x.0.0 - stable / main release (_eg. "Version 2(.0.0)_")
+- _..._ NA - New Architecture
 
+## Version 0.1.0 NA
+(After being dead for a long time, DevHub is back less gooooooo)
+
+- Implemented functional language functionality
+- Implemented functional settings menu
+- Some places for some reason were still using the old DevHome name. Fixed.
+- Now will use Lua 5.4. This doesn't carry any change as of now.
 ## Version 0.0.9 NA
 - Rewrited the program from scratch.
 
@@ -19,9 +26,9 @@ Release system:
 **These need reviewing (have errors):**
 - Implemented update submitting: Submit a Pull Request or a Direct Commit with ease to the source repo.
 - Implemented project removing.
-- Improved error handling + Now some errors are named and documented (see https://optix.rf.gd/apps/devhome/errors).
+- Improved error handling + Now some errors are named and documented (see https://optix.rf.gd/apps/devhub/errors).
 ## Version 0.0.7
-- It's over. Finally. WE SWITCH TO JSON! Using `.optixData` was a non-sense.
+- It's over. Finally. WE SWITCH TO JSON! Using `.optixData` was a non-sense and a waste of time.
 - Project name safety
 - - Now you can't have two projects named the same.
 - - Unlike before, the project data won't be written until the project is created

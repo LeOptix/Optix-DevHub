@@ -22,6 +22,12 @@ The objective of Optix DevHub is to create a simple but powerful productivity so
         - [ ] Recordings
 - [X] Multiple languages
 - [ ] Accounting system
+    - [ ] GitHub integration
+    - [ ] GitLab integration
+    - [ ] Cloud code
+        - [ ] Encrypted cloud code
+        - [ ] Optix WebCode integration
+- [X] Datastore
 - [ ] GUI
     - [ ] GUI based on the Umbra design system (Link to Figma (very) soon)
 
@@ -36,10 +42,10 @@ Libraries:
 - LuaFileSystem
 - SQLite
 
-First, install Lua 5.3 from [their website](https://lua.org), or if you're on Linux make it faster from your terminal.
+First, install Lua 5.4 from [their website](https://lua.org/download.html), or if you're on Linux make it faster from your terminal.
 - **Debian or Ubuntu**
 ```bash
-sudo apt-get install lua5.3
+sudo apt-get install lua5.4
 ```
 - **Fedora or CentOS**
 ```bash
@@ -58,13 +64,13 @@ The names are
 **luasocket**
 **rapidjson**
 **lfs**
-**lsqlite3**
 
 - LuaSocket: For HTTP requests.
 - RapidJSON: JSON encoding and decoding.
 - LuaFileSystem: LFS is a library for easier access to the users file system.
-- SQLite 3: SQLite integration for Lua.
+<!-- - SQLite 3: SQLite integration for Lua. -->
 <!-- - LGI: GObject integration for Lua, brings Gtk, Gdk, Pango, etc... For GUIs. -->
+<!-- Both removed for not supporting Lua 5.4. Will require an alternative.-->
 
 ## Editing
 

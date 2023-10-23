@@ -2,7 +2,7 @@
 HTTP = require "socket.http" -- LuaSocket - Allows HTTP requests.
 JSON = require "rapidjson" -- RapidJSON - JSON encoding & decoding.
 LFS = require "lfs" -- LuaFileSystem - Easier usage of user's file systems.
-SQL = require "lsqlite3"
+-- SQL = require "lsqlite3"
 
 OsSeparator = package.config:sub(1, 1) -- The OS separator is different between Windows & Linux.
 ClearCLIcmd = "" -- Global command to clear the terminal
@@ -36,16 +36,23 @@ TerminalTextBackgroundBlue = "\27[30;44m"
 
 TerminalTextColorReset = "\27[0m" -- Add this after formatted sentences.
 
--- TRANSLATIONS
--- This is long lol.
+-- FILE PATHS
+HomeDir = os.getenv("HOME") or os.getenv("USERPROFILE") or ""
+AppDirPath = HomeDir .. OsSeparator .. ".OptixDevHub"
+ProjectFilePath = AppDirPath .. OsSeparator .. "projects.json"
+LangFilePath = AppDirPath .. OsSeparator .. "lang.json"
+
+-- TRANSLATIONS - This is kinda long, lol.
 -- EN - ENGLISH
 TRANS_EN_LoadText =  TerminalTextColorMagenta .. "Optix DevHub is loading..." .. TerminalTextColorReset
 TRANS_EN_WelcomeText = TerminalTextFormatBold .. TerminalTextBackgroundBlue .. "Welcome to Optix DevHub" .. TerminalTextColorReset
 TRANS_EN_LuaorgCopyright = TerminalTextColorBlue .. "Copyright © 1994-2023 Lua.org, PUC-Rio.\n" .. TerminalTextColorReset
 TRANS_EN_ERR_ProjectFilesOnStart = "There was an error reading the database - Error code: DBx001"
 TRANS_EN_SUC_ProjectFilesOnStart = "Success reading the database"
-TRANS_EN_WhatUserCanDoAtStart = "Options:\n" .. TerminalTextFormatBold .. "open" .. TerminalTextColorReset .. " Open up a project\n" .. TerminalTextFormatBold .. "new" .. TerminalTextColorReset .. " Create a new project\n" .. TerminalTextFormatBold .. "set" .. TerminalTextColorReset .. " Change Optix DevHome's settings\n" .. TerminalTextFormatBold .. "help" .. TerminalTextColorReset .. " Get some help\n" .. TerminalTextFormatBold .. "about" .. TerminalTextColorReset .. " Credits and more" .. TerminalTextFormatBold .. "exit" .. TerminalTextColorReset .. " Quit Optix DevHub"
+TRANS_EN_WhatUserCanDoAtStart = "Options:\n" .. TerminalTextFormatBold .. "open" .. TerminalTextColorReset .. " Open up a project\n" .. TerminalTextFormatBold .. "new" .. TerminalTextColorReset .. " Create a new project\n" .. TerminalTextFormatBold .. "set" .. TerminalTextColorReset .. " Change Optix DevHub's settings\n" .. TerminalTextFormatBold .. "help" .. TerminalTextColorReset .. " Get some help\n" .. TerminalTextFormatBold .. "about" .. TerminalTextColorReset .. " Credits and more" .. TerminalTextFormatBold .. "exit" .. TerminalTextColorReset .. " Quit Optix DevHub"
+TRANS_EN_whatSettingsTheUserHas = "Options:\n" .. TerminalTextFormatBold .. "lang" .. TerminalTextColorReset .. " Change your language\n" .. "More options to be added soon!" .. TerminalTextColorReset
 TRANS_EN_ERR_WhatToDoAtStart = TerminalTextColorRed .. "\nUnknown option. Error.\n" .. TerminalTextColorReset
+TRANS_EN_ERR_WhatToDoAtSet = TerminalTextColorRed .. "\nUnknown option. Error.\n" .. TerminalTextColorReset
 TRANS_EN_UserQuittedProgram = "\nLeaving Optix DevHub. See you, bro!\n"
 TRANS_EN_ComingSoon = "\nComing soon!\n"
 TRANS_EN_ERR_Gitnt = TerminalTextFormatBold .. TerminalTextBackgroundRed .. "Git is not installed. You must install it for Optix DevHub to work." .. TerminalTextColorReset
@@ -59,6 +66,9 @@ TRANS_EN_ERR_ConfirmYoureCreatingProject = TerminalTextColorRed .. "\nUnknown ke
 TRANS_EN_ERR_MKDIRNewProject = TerminalTextColorRed .. "\nError: Directory %s doesn't exist AND there was an error creating it.\n" .. TerminalTextColorReset
 TRANS_EN_SUC_ProjectCreated = TerminalTextBackgroundGreen .. "\nProject %s was successfully created at %s! You can program now ;]" .. TerminalTextColorReset
 TRANS_EN_ERR_ProjectNotCreated = TerminalTextColorRed .. "\nError: There was an error creating your project" .. TerminalTextColorReset
+TRANS_EN_settingsLabel = TerminalTextFormatBold .. TerminalTextBackgroundBlue .. "Settongs" .. TerminalTextColorReset
+
+TRANS_EN_AboutDevHub = "test (but in english)"
 
 -- ES - SPANISH
 TRANS_ES_LoadText = TerminalTextColorMagenta .. "Optix DevHub está cargando..." .. TerminalTextColorReset
@@ -66,8 +76,11 @@ TRANS_ES_WelcomeText = TerminalTextFormatBold .. TerminalTextBackgroundBlue .. "
 TRANS_ES_LuaorgCopyright = TerminalTextColorBlue .. "Copyright © 1994-2023 Lua.org, PUC-Rio.\n" .. TerminalTextColorReset
 TRANS_ES_ERR_ProjectFilesOnStart = "Hubo un error leyendo la base de datos - Código de error: DBx001"
 TRANS_ES_SUC_ProjectFilesOnStart = "Éxito leyendo la base de datos"
-TRANS_ES_WhatUserCanDoAtStart = "Opciones:\n" .. TerminalTextFormatBold .. "open" .. TerminalTextColorReset .. " Abrir un proyecto\n" .. TerminalTextFormatBold .. "new" .. TerminalTextColorReset .. " Crear un proyecto nuevo\n" .. TerminalTextFormatBold .. "set" .. TerminalTextColorReset .. " Ajustar los ajustes de Optix DevHome\n" .. TerminalTextFormatBold .. "help" .. TerminalTextColorReset .. " Ayuda para usar el programa\n" .. TerminalTextFormatBold .. "about" .. TerminalTextColorReset .. " Creditos y demás\n" .. TerminalTextFormatBold .. "exit" .. TerminalTextColorReset .. " Salir de Optix DevHub"
+TRANS_ES_WhatUserCanDoAtStart = "Opciones:\n" .. TerminalTextFormatBold .. "open" .. TerminalTextColorReset .. " Abrir un proyecto\n" .. TerminalTextFormatBold .. "new" .. TerminalTextColorReset .. " Crear un proyecto nuevo\n" .. TerminalTextFormatBold .. "set" .. TerminalTextColorReset .. " Ajustar los ajustes de Optix DevHub\n" .. TerminalTextFormatBold .. "help" .. TerminalTextColorReset .. " Ayuda para usar el programa\n" .. TerminalTextFormatBold .. "about" .. TerminalTextColorReset .. " Creditos y demás\n" .. TerminalTextFormatBold .. "exit" .. TerminalTextColorReset .. " Salir de Optix DevHub"
+                                                                                                                                                                                                                                                                                                    -- ^ This one is written this particular way in purpose. Its a little bit annoying. Lol.
+TRANS_ES_whatSettingsTheUserHas = "Opciones:\n" .. TerminalTextFormatBold .. "lang" .. TerminalTextColorReset .. " Cambiar tu idioma\n" .. "¡Mas opciones pronto!" .. TerminalTextColorReset
 TRANS_ES_ERR_WhatToDoAtStart = TerminalTextColorRed .. "\nOpción desconocida. Error.\n" .. TerminalTextColorReset
+TRANS_ES_ERR_WhatToDoAtSet = TerminalTextColorRed .. "\nOpción desconocida. Error.\n" .. TerminalTextColorReset
 TRANS_ES_UserQuittedProgram = "\nSaliendo de Optix DevHub. ¡Nos vemos, amigo!\n"
 TRANS_ES_ComingSoon = "\n¡Pronto disponible!\n"
 TRANS_ES_ERR_Gitnt = TerminalTextFormatBold .. TerminalTextBackgroundRed .. "Git no está instalado. Debes instalarlo para que Optix DevHub funcione." .. TerminalTextColorReset
@@ -81,6 +94,9 @@ TRANS_ES_ERR_ConfirmYoureCreatingProject = TerminalTextColorRed .. "\nTecla desc
 TRANS_ES_ERR_MKDIRNewProject = TerminalTextColorRed .. "\nError: El directorio %s no existe Y hubo un error creándolo.\n" .. TerminalTextColorReset
 TRANS_ES_SUC_ProjectCreated = TerminalTextBackgroundGreen .. "\n¡El proyecto %s fue creado con éxito en %s! Ya puedes programar ;]" .. TerminalTextColorReset
 TRANS_ES_ERR_ProjectNotCreated = TerminalTextColorRed .. "\nError: Hubo un error creando tu proyecto" .. TerminalTextColorReset
+TRANS_ES_settingsLabel = TerminalTextFormatBold .. TerminalTextBackgroundBlue .. "Configuración" .. TerminalTextColorReset
+
+TRANS_ES_AboutDevHub = "test (pero en español)"
 
 -- TRANSLATIONS FUNCTIONALITY
 CurrentUserLanguage = "en"
@@ -108,7 +124,33 @@ function translate(key, ...)
 end
 
 -- GET USER LANGUAGE
-local languageToUse = ReadInput(TerminalTextColorYellow .. "SELECT LANGUAGE\nES - ESPAÑOL\nEN - ENGLISH\n(USE LOWERCASE // USE MINÚSCULAS)\n" .. TerminalTextColorReset)
+local languageSavedData = io.open(LangFilePath, "r")
+
+if languageSavedData then
+    local langFileContent = languageSavedData:read("*all")
+    languageSavedData:close()
+
+    if JSON.decode(langFileContent) == "es" then
+        languageToUse = "es"
+    elseif JSON.decode(langFileContent) == "en" then
+        languageToUse = "en"
+    else
+        if languageToUse == nil then
+            languageToUse = ReadInput(TerminalTextColorYellow .. "SELECT LANGUAGE\nES - ESPAÑOL\nEN - ENGLISH\n(USE LOWERCASE // USE MINÚSCULAS)\n" .. TerminalTextColorReset)
+
+            -- Save the chosen language as JSON to the file.
+            local langFileContent = JSON.encode(languageToUse)
+            local file = io.open(LangFilePath, "w")
+            if file then
+                file:write(langFileContent)
+                file:close()
+            else
+                print(translate("ERR_SavingLangDataToJSON"))
+            end
+        end
+    end
+end
+
 if languageToUse == "en" then
     CurrentUserLanguage = "en"
 elseif languageToUse == "es" then
@@ -121,9 +163,6 @@ end
 print(translate("LoadText"))
 
 -- PROJECT HANDLING
-HomeDir = os.getenv("HOME") or os.getenv("USERPROFILE") or ""
-ProjectDirPath = HomeDir .. OsSeparator .. ".OptixDevHub"
-ProjectFilePath = ProjectDirPath .. OsSeparator .. "projects.json"
 
 local function ensureDirectoryAndFileExist(directoryPath, fileName)
     local dirExists = lfs.attributes(directoryPath, "mode") == "directory"
@@ -150,13 +189,21 @@ local function ensureDirectoryAndFileExist(directoryPath, fileName)
 end
 
 -- Call the function and handle the result
-local success, errorMessage = ensureDirectoryAndFileExist(ProjectDirPath, "projects.json")
+local projectFileExists = ensureDirectoryAndFileExist(AppDirPath, "projects.json")
+local langFileExists = ensureDirectoryAndFileExist(AppDirPath, "lang.json")
 
-if not success then
+if not projectFileExists then
     print(translate("ERR_ProjectFilesOnStart"))
     -- Close or exit here as needed
 else
     print(translate("SUC_ProjectFilesOnStart"))
+end
+
+if not langFileExists then
+    print(translate("ERR_LangFilesOnStart"))
+    -- Close or exit here as needed
+else
+    print(translate("SUC_LangFilesOnStart"))
 end
 
 -- EXTRAS

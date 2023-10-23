@@ -30,7 +30,9 @@ while not UserGaveAPrompt do
         os.execute(ClearCLIcmd)
         dofile("create.lua")
     elseif userPrompt == "set" then
-        print(translate("ComingSoon"))
+        UserGaveAPrompt = true
+        os.execute(ClearCLIcmd)
+        dofile("set.lua")
     elseif userPrompt == "help" then
         UserGaveAPrompt = true
         os.execute(ClearCLIcmd)
