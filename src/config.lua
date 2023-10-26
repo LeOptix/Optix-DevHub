@@ -2,14 +2,17 @@
 HTTP = require "socket.http" -- LuaSocket - Allows HTTP requests.
 JSON = require "rapidjson" -- RapidJSON - JSON encoding & decoding.
 LFS = require "lfs" -- LuaFileSystem - Easier usage of user's file systems.
--- SQL = require "lsqlite3"
+-- SQL = require "lsqlite3" -- DEPRECATED
 
 OsSeparator = package.config:sub(1, 1) -- The OS separator is different between Windows & Linux.
 ClearCLIcmd = "" -- Global command to clear the terminal
+Sleepcmd = "" -- Global command to wait 1 second
 if OsSeparator == '\\' then
     ClearCLIcmd = "cls"
+    Sleepcmd = "timeout /t 1"
 else
     ClearCLIcmd = "clear"
+    Sleepcmd = "sleep 1"
 end
 
 -- CLI INPUT PROCESSING
@@ -67,6 +70,9 @@ TRANS_EN_ERR_MKDIRNewProject = TerminalTextColorRed .. "\nError: Directory %s do
 TRANS_EN_SUC_ProjectCreated = TerminalTextBackgroundGreen .. "\nProject %s was successfully created at %s! You can program now ;]" .. TerminalTextColorReset
 TRANS_EN_ERR_ProjectNotCreated = TerminalTextColorRed .. "\nError: There was an error creating your project" .. TerminalTextColorReset
 TRANS_EN_settingsLabel = TerminalTextFormatBold .. TerminalTextBackgroundBlue .. "Settongs" .. TerminalTextColorReset
+TRANS_EN_TheseAreYourProjects = TerminalTextFormatBold .. "These are all your projects, enter a number to open up one.\n" .. TerminalTextColorReset
+TRANS_EN_OpeningProject = "\nOpening project %s (%s)"
+TRANS_EN_ERR_InvalidNumber = TerminalTextColorRed .. "\nInvalid number, try again.\n" .. TerminalTextColorReset
 
 TRANS_EN_AboutDevHub = "test (but in english)"
 
@@ -95,6 +101,9 @@ TRANS_ES_ERR_MKDIRNewProject = TerminalTextColorRed .. "\nError: El directorio %
 TRANS_ES_SUC_ProjectCreated = TerminalTextBackgroundGreen .. "\n¡El proyecto %s fue creado con éxito en %s! Ya puedes programar ;]" .. TerminalTextColorReset
 TRANS_ES_ERR_ProjectNotCreated = TerminalTextColorRed .. "\nError: Hubo un error creando tu proyecto" .. TerminalTextColorReset
 TRANS_ES_settingsLabel = TerminalTextFormatBold .. TerminalTextBackgroundBlue .. "Configuración" .. TerminalTextColorReset
+TRANS_ES_TheseAreYourProjects = TerminalTextFormatBold .. "Estos son todos tus proyectos, introduce un número para abrir uno.\n" .. TerminalTextColorReset
+TRANS_ES_OpeningProject = "\nAbriendo el proyecto %s (%s)"
+TRANS_ES_ERR_InvalidNumber = TerminalTextColorRed .. "\nNumero inválido, prueba de nuevo.\n" .. TerminalTextColorReset
 
 TRANS_ES_AboutDevHub = "test (pero en español)"
 

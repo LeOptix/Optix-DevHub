@@ -112,4 +112,11 @@ repeat
     end
 until hasConfirmed
 
+-- SLEEP (3)
+os.execute(Sleepcmd)
+os.execute(Sleepcmd)
+os.execute(Sleepcmd)
+
+-- Open the project you just created, i guess
+print("")
 dofile("open.lua")

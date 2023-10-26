@@ -1,6 +1,6 @@
 {
     "name": "Optix DevHub",
-    "version": "a0.0.9-NA",
+    "version": "0.1.0-NA",
     "author": {
       "name": "Optix",
       "website": "https://optix.rf.gd/bio"
@@ -27,5 +27,5 @@
     "contributors": "CREDITS.md",
     "documentation": "README.md",
     "createdAt": "2023-07-08",
-    "updatedAt": "2023-07-08"
+    "updatedAt": "2023-26-10"
   }
